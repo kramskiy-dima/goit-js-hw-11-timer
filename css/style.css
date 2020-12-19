@@ -1,0 +1,35 @@
+body {
+  font-family: 'Indie Flower', cursive;
+  /* background-color: black; */
+  background: url(../bgr@2.png);
+  background-size: cover;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(
+    to right,
+    rgba(144, 108, 54, 1),
+    rgba(237, 201, 133, 1),
+    rgba(180, 135, 70, 1)
+  );
+  border-radius: 20px;
+}
+
+.field {
+  margin-right: 20px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.value {
+  font-size: 150px;
+}
+
+.label {
+  font-size: 80px;
+}
