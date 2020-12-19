@@ -1,23 +1,20 @@
 body {
   font-family: 'Indie Flower', cursive;
-  /* background-color: black; */
-  background: url(../images/bgr@2.png);
-  background-size: cover;
 }
 
-.timer {
-  display: flex;
-  justify-content: center;
+.title {
+  margin: 0;
+  padding: 0;
+  text-align: center;
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  background-image: linear-gradient(
-    to right,
-    rgba(144, 108, 54, 1),
-    rgba(237, 201, 133, 1),
-    rgba(180, 135, 70, 1)
-  );
-  border-radius: 20px;
+  background-image: linear-gradient(to right, red, yellow, red, yellow, red);
+  font-size: 350px;
+}
+.timer {
+  display: flex;
+  justify-content: center;
 }
 
 .field {
@@ -27,9 +24,21 @@ body {
 }
 
 .value {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(to right, red, rgb(194, 194, 4));
   font-size: 150px;
 }
 
 .label {
+  color: transparent;
   font-size: 80px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(
+    to right,
+    rgb(202, 202, 13),
+    rgb(189, 5, 5)
+  );
 }
