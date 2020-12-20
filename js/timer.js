@@ -1,40 +1,44 @@
-const refs = {
-  days: document.querySelector('[data-value="days"]'),
-  hours: document.querySelector('[data-value="hours"]'),
-  mins: document.querySelector('[data-value="mins"]'),
-  secs: document.querySelector('[data-value="secs"]'),
-};
+class CountdownTimer {
+  constructor({ selector, targetDate }) {
+    this.targetDate = targetDate;
 
-const startDate = new Date(2021, 0, 1);
-let intervalId = null;
+    this.timer = document.querySelector(selector);
+    this.days = this.timer.querySelector('[data-value="days"]');
+    this.hours = this.timer.querySelector('[data-value="hours"]');
+    this.mins = this.timer.querySelector('[data-value="mins"]');
+    this.secs = this.timer.querySelector('[data-value="secs"]');
+  }
 
-timer(startDate);
+  start() {
+    setInterval(() => {
+      const currentTime = Date.now();
+      const deltatime = this.targetDate - currentTime;
+      const time = this.getTimeComponents(deltatime);
+      this.days.textContent = time.days;
+      this.hours.textContent = time.hours;
+      this.mins.textContent = time.mins;
+      this.secs.textContent = time.secs;
+    }, 1000);
+  }
 
-function timer(start) {
-  intervalId = setInterval(() => {
-    const currentTime = Date.now();
-    const deltatime = start - currentTime;
-    refs.days.textContent = getDays(deltatime);
-    refs.hours.textContent = getHours(deltatime);
-    refs.mins.textContent = getMins(deltatime);
-    refs.secs.textContent = getSecs(deltatime);
-  }, 1000);
+  getTimeComponents(time) {
+    const days = this.pad(Math.floor(time / 1000 / 60 / 60 / 24));
+    const hours = this.pad(
+      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    );
+    const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
+    return { days, hours, mins, secs };
+  }
+
+  pad(value) {
+    return String(value).padStart(2, '0');
+  }
 }
 
-function getDays(time) {
-  return pad(Math.floor(time / 1000 / 60 / 60 / 24));
-}
+const startTimer = new CountdownTimer({
+  selector: '#timer-1',
+  targetDate: new Date(2021, 0, 1),
+});
 
-function getHours(time) {
-  return pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-}
-function getMins(time) {
-  return pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-}
-function getSecs(time) {
-  return pad(Math.floor((time % (1000 * 60)) / 1000));
-}
-
-function pad(value) {
-  return String(value).padStart(2, '0');
-}
+startTimer.start();
